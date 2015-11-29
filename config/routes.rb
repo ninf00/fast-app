@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :microposts
-  root 'home#index'
+  root 'users#index'
 
   get 'home/index'
 
