@@ -1,0 +1,16 @@
+<h1>サインイン</h1>
+
+<div>
+  <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
+</div>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <br>
+  <br>
+  <%= f.submit "サインイン" %>
+<% end %>

@@ -30,6 +30,7 @@ class MicropostsController < ApplicationController
 
     respond_to do |format|
       if @micropost.save
+        twit("新規：" + @micropost.content)
         format.html { redirect_to @micropost, notice: 'Micropost was successfully created.' }
         format.json { render :show, status: :created, location: @micropost }
       else
@@ -44,6 +45,7 @@ class MicropostsController < ApplicationController
   def update
     respond_to do |format|
       if @micropost.update(micropost_params)
+        twit("編集：" + @micropost.content)
         format.html { redirect_to @micropost, notice: 'Micropost was successfully updated.' }
         format.json { render :show, status: :ok, location: @micropost }
       else
@@ -72,5 +74,22 @@ class MicropostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def micropost_params
       params.require(:micropost).permit(:content, :user_id)
+    end
+    
+    #  Twitterへ呟くためのメソッド
+    def twit(tweet)
+        client = Twitter::REST::Client.new do |config|
+          config.consumer_key = "DH7BU83URUiwAyH6oGh2Hdq8s"
+          config.consumer_secret = "JapRl46pm7PH5ccUNPct1dzkzwRfHg2ibcX9XvU3GF55CrNfPY"
+          config.access_token = "20267759-MEzmi6WsCCI5z4nhvgUB3cGxS5rMGQCIS9OnyJBWL"
+          config.access_token_secret = "xuw4thHo9BVAz6MX5qi5PRnLNy2e2gxpp9EnL1RWsrshz"
+        end
+        begin
+          tweet = (tweet.length > 140) ? tweet[0..139].to_s : tweet
+          client.update(tweet.chomp)
+        rescue => e
+          ## ツイートエラー処理
+          Rails.logger.error "<<twitter.rake::tweet.update ERROR : #{e.message}>>"
+        end
     end
 end
