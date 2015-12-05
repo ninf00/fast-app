@@ -4,3 +4,12 @@
 table thead tr {
 	background-color:#add8e6
 }
+
+
+table tbody tr:nth-child(even) {
+    background: #F5F5F5;
+}
+ 
+table tbody tr:nth-child(odd) {
+    background: #FFFAFA;
+}

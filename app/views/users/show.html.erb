@@ -1,24 +1,34 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>名前:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Email:</strong>
+  <strong>Eメール:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-	<strong>Password:</strong>
+	<strong>パスワード:</strong>
 	<%= @user.password %>
 </p>
 
 <p>
-	<strong>Flag:</strong>
+    <strong>電話番号:</strong>
+    <%= @user.tel %>
+</p>
+
+<p>
+    <strong>コメント:</strong>
+    <%= simple_format(@user.comment) %>
+</p>
+
+<p>
+	<strong>削除フラグ:</strong>
 	<%= @user.delete_flag %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to '編集', edit_user_path(@user) %> |
+<%= link_to '戻る', users_path %>

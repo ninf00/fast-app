@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>名前</strong>
+  <%= @user.name %>
+</p>
+<table border="0">
+　<thead>
+    <th>
+      コンテンツ
+    </th>
+
+  </thead>
+  <tbody>
+    <% @user.microposts.each do |m| %>
+    <tr>
+      <td>
+          <%= simple_format(m.content) %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to '戻る', users_path %>

@@ -1,3 +1,12 @@
 // Place all the styles related to the Microposts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//tableの偶数行と奇数行で色違いになるように指定するタグ//
+table tbody tr:nth-child(even) {
+    background: #F5F5F5;
+}
+ 
+table tbody tr:nth-child(odd) {
+    background: #FFFAFA;
+}

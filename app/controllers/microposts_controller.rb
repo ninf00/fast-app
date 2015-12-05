@@ -15,10 +15,12 @@ class MicropostsController < ApplicationController
   # GET /microposts/new
   def new
     @micropost = Micropost.new
+    @user_list = User.all.map{|user| [user.name, user.id] } 
   end
 
   # GET /microposts/1/edit
   def edit
+    @user_list = User.all.map{|user| {user.id => user.name}}
   end
 
   # POST /microposts

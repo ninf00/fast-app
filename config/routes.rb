@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'users#index'
 
   get 'home/index'
+  get 'users/:id/contents',:controller =>'users', :action => 'contents_show'
+  get 'addr', :controller => 'users', :action => 'addr'
+  get 'addr/:id', :controller => 'users', :action => 'addr_show'
+  get 'users/:id/contents', :controller => 'users', :action => 'contents_show'
 
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
